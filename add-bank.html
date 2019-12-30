@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>I N L O</title>
+
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body style="font-family: Ubuntu;">
+
+    <nav class="shadow navbar navbar-expand-lg navbar-dark" style="background: black; font-size: 18px;">
+        <a href="MainPage.html" class="navbar-brand">
+            <kbd style="color: #58FF33;">I N L O | A D M I N</kbd>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <span style="padding-right: 20px;"></span>
+                <li class="nav-item">
+                    <a href="add-bank.html" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-users"></i>
+                        Banks
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link font-weight-normal">
+                        <i class="d-lg-none mr-2 fa fa-cogs"></i>
+                        Loans
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-slack"></i>
+                        Ideas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-files-o"></i>
+                        Comments
+                    </a>
+                </li>
+            </ul>
+
+            <form class="form-inline mt-0 ml-auto">
+                <div class="input-group">
+                    <input type="search" class="form-control form-control-sm bg-light"
+                        style="color: rgb(6, 6, 7); width: 400px;" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="input-group-text btn btn-outline-warning"><i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5 mb-5">
+        <div class="shadow d-flex card">
+            <div class="shadow d-flex mt-4 card-body">
+                <div class="container-fluid">
+                    <div class="ml-3">
+                        <div class="d-flex">
+                            <a href="add-bank.html" class="btn btn-sm btn-primary">A D D B A N K</a>
+                            <a href="bank-info.html" class="ml-3 btn btn-sm btn-primary">S H O W B A N K</a>
+                        </div>
+                        <div style="background: black; color: whitesmoke;">
+                            <h3 class="mt-3 p-2">Add Bank</h3>
+                        </div>
+                        <br>
+                        <script>
+                            var counter = 0;
+                        </script>
+                        <form id="main-form">
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Known As </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="knownAs" name="knownAs" class="form-control"
+                                        placeholder="Known As" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> SWIFT CODE </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="swiftCode" name="swiftCode" class="form-control"
+                                        placeholder="Swift Code" />
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Stock Code </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="stockCode" name="stockCode" class="form-control"
+                                        placeholder="Stock Code" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Category </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="category" name="category" class="form-control"
+                                        placeholder="Category" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Type </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="type" name="type" class="form-control" placeholder="Type" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Origin </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="origin" name="origin" class="form-control"
+                                        placeholder="Origin" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Address </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea id="address" type="text" name="address" class="form-control"
+                                        placeholder="Address"></textarea>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Description </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea id="description" type="text" name="description" class="form-control"
+                                        placeholder="Description"></textarea>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Photo </h6>
+                                </label>
+                                <div class="col-sm-10 mt-1">
+                                    <input type="file" id="bankPhoto" name="bankPhoto" />
+                                    <img id="selected-image" class="mt-3 img-thumbnail" src="#" />
+                                </div>
+                                <div class="col-sm-10 mt-1">
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <div class="progress bg-secondary">
+                                    <div class="progress-bar bg-info" id="upload-progress">0%</div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> </h6>
+                                </label>
+                                <div class="col-sm-10 mt-1" style="text-align: end;">
+                                    <button id="save-bank" type="button" class="btn btn-sm btn-info">Add TO
+                                        FIREBASE</button>
+                                </div>
+                            </div>
+                            <br>
+                        </form>
+                        <div id="result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="public/js/jquery.js"> </script>
+    <script type="text/javascript" src="public/js/bootstrap.min.js"> </script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+    <script src="public/js/index.js"></script>
+
+    <script>
+        var validImagetypes = ["image/gif", "image/jpeg", "image/png"];
+
+        $("#selected-image").hide();
+
+        function previewImages(image_blog) {
+            if (image_blog.files && image_blog.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#selected-image").attr('src', e.target.result);
+                    $("#selected-image").fadeIn();
+                }
+                reader.readAsDataURL(image_blog.files[0]);
+            }
+        }
+
+        $("#bankPhoto").change(function () {
+            previewImages(this);
+        });
+
+        $("#save-bank").click(function () {
+            $("#knownAs").removeClass("is-invalid");
+            $("#swiftCode").removeClass("is-invalid");
+            $("#stockCode").removeClass("is-invalid");
+            $("#category").removeClass("is-invalid");
+            $("#type").removeClass("is-invalid");
+            $("#origin").removeClass("is-invalid");
+            $("[name=address]").removeClass("is-invalid");
+            $("[name=description]").removeClass("is-invalid");
+            $("#bankPhoto").removeClass("is-invalid");
+
+            var knownAs = $("#knownAs").val();
+            var swiftCode = $("#swiftCode").val();
+            var stockCode = $("#stockCode").val();
+            var category = $("#category").val();
+            var type = $("#type").val();
+            var origin = $("#origin").val();
+            var address = $("#address").val(); 
+            // var address = $('[name=address]').val();
+            // var description = $('[name=description]').val();
+            var description = $("#description").val();
+            var picture = $("#bankPhoto").prop("files")[0];
+
+            if (!description) {
+                $("#description").addClass("is-invalid");
+                // $("[name=description]").addClass("is-invalid");
+                return;
+            }
+            if (picture == null) {
+                $("#bankPhoto").addClass("is-invalid");
+                return;
+            }
+            if ($.inArray(picture["type"], validImagetypes) < 0) {
+                $("#bankPhoto").addClass("is-invalid");
+                return;
+            }
+
+            var databaseRef = firebase.database().ref().child("bankinfo");
+
+            databaseRef.once("value").then(function (snapshot) {
+                var name = picture["name"];
+                var dateStr = new Date().getTime();
+                var fileCompleteName = name + "_" + dateStr;
+
+                var storageRef = firebase.storage().ref("bank_images");
+                var blogStorageRef = storageRef.child(fileCompleteName);
+
+                var UploadTask = blogStorageRef.put(picture);
+
+
+                UploadTask.on("state_changed",
+
+                    function progress(snapshot) {
+                        var persentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+                        $("#upload-progress").html(Math.round(persentage) + "%");
+                        $("#upload-progress").attr("style", "width:" + persentage + "%");
+                    },
+                    function error(err) {
+                        console.log(err);
+                    },
+                    function complete() {
+                        var user = firebase.auth().currentUser;
+                        var userName;
+                        firebase.database().ref('admin/' + user.uid).once('value').then(function (
+                            snapshot) {
+                            var fName = (snapshot.val() && snapshot.val().firstName);
+                            var sName = (snapshot.val() && snapshot.val().secondName);
+
+                            userName = fName + " " + sName;
+                        });
+
+                        UploadTask.snapshot.ref.getDownloadURL().then(function (downloadUrl) {
+                            var time = new Date();
+                            var options = {
+                                weekday: "long",
+                                month: "long",
+                                day: "2-digit",
+                                year: "number",
+                            };
+
+                            var bankData = {
+                                "knownAs": knownAs,
+                                "stockCode": stockCode,
+                                "swiftCode": swiftCode,
+                                "category": category,
+                                "type": type,
+                                "origin": origin,
+                                "address": address,
+                                "description": description,
+                                "image": downloadUrl,
+                                "name": fileCompleteName,
+                                "counter": 5000 - counter,
+                                "time": time.toLocaleString('en-US', {
+                                    hour: 'numeric',
+                                    minute: 'numeric',
+                                    hour12: true
+                                }),
+                                //"date": time.toLocaleDateString('en-US', options),
+                            };
+
+                            var newPostRef = databaseRef.push();
+
+                            newPostRef.set(bankData, function (err) {
+                                if (err) {
+                                    $("#result").attr("class",
+                                        "alert alert-danger");
+                                    $("#result").html(err.message);
+
+                                } else {
+                                    $("#result").attr("class",
+                                        "alert alert-success");
+                                    $("#result").html(
+                                        "Info has been uploaded successfully.");
+
+                                    window.open("", "_self");
+
+                                }
+                                resetForm();
+
+                            });
+                        });
+                    }
+                );
+            });
+        });
+
+        function resetForm() {
+            $("#main-form")[0].reset();
+            $("#selected-image").fadeOut();
+            $("#upload-progress").html("completed");
+        }
+    </script>
+
+    <!-- <script type="text/javascript" src="public/ckeditor/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#address'))
+            .then(ckeditor => {
+                console.log(ckeditor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#description'))
+            .then(ckeditor => {
+                console.log(ckeditor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script> -->
+
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+                window.location.href = "signin.html";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

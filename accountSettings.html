@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="inner">
+            <div class="image-holder">
+                <img src="public/images/accountSettingsback.jpg">
+            </div>
+            <form action="">
+                <h3>Account Settings</h3>
+                <div class="form-group">
+                    <input id="firstName" type="text" placeholder="First Name" class="form-control">
+                    <input id="secondName" type="text" placeholder="Second Name" class="form-control">
+
+                </div>
+                <div class="form-wrapper">
+                    <select name="" id="country" class="form-control">
+                        <option value="" disabled selected>Country</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Africa">Africa</option>
+                        <option value="India">India</option>
+                    </select>
+                    <i class="zmdi zmdi-caret-down" style="font-size: 17px;"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input id="phone" type="number" placeholder="Phone" class="form-control">
+                    <i class="zmdi zmdi-tablet-mac"></i>
+                </div>
+                <div class="form-wrapper">
+                    <select name="" id="gender" class="form-control">
+                        <option value="" disabled selected>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+
+                    </select>
+                    <i class="zmdi zmdi-caret-down" style="font-size: 17px;"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input id="address" type="text" placeholder="Address" class="form-control">
+                    <i class="zmdi zmdi-pin"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input id="bio" type="text" placeholder="Bio" class="form-control">
+                    <i class="zmdi zmdi-account-box-mail"></i>
+                </div>
+                <div class="form-group container-login100-form-btn">
+                    <button id="btn-update" type="button">
+                        Update & Set
+                        <i class="zmdi zmdi-arrow-right"></i>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="public/js/jquery.js"> </script>
+    <script type="text/javascript" src="public/js/bootstrap.min.js"> </script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+    <script src="public/js/index.js"></script>
+
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var userId = firebase.auth().currentUser.uid;
+
+                firebase.database().ref('admin/' + userId).once('value').then(function (snapshot) {
+                    if (snapshot.val()) {
+                        window.location.href = "MainPage.html";
+                    }
+
+                });
+
+            }
+        });
+    </script>
+
+</body>
+
+</html>

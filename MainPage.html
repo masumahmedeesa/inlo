@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>I N L O</title>
+
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body style="font-family: Ubuntu;">
+
+    <nav class="shadow navbar navbar-expand-lg navbar-dark" style="background: black; font-size: 18px;">
+        <a href="MainPage.html" class="navbar-brand">
+            <kbd style="color: #58FF33;">I N L O | A D M I N</kbd>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <span style="padding-right: 20px;"></span>
+                <li class="nav-item">
+                    <a href="bank-info.html" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-users"></i> Banks
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link font-weight-normal">
+                        <i class="d-lg-none mr-2 fa fa-cogs"></i> Loans
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-slack"></i> Ideas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-files-o"></i> Comments
+                    </a>
+                </li>
+            </ul>
+
+            <form class="form-inline mt-0 ml-auto">
+                <div class="input-group">
+                    <input type="search" class="form-control form-control-sm bg-light"
+                        style="color: rgb(6, 6, 7); width: 400px;" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="input-group-text btn btn-outline-warning"><i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5 mb-5">
+        <div class="shadow d-flex card">
+            <div class="shadow d-flex mt-4 card-body">
+                <div class="container-fluid">
+                    <div class="ml-3">
+                        <h1>What Is an Investment?
+                        </h1>
+                        <h4>An investment is an asset or item acquired with the goal of generating income or
+                            appreciation. In an economic sense, an investment is the purchase of goods that are not
+                            consumed today but are used in the future to create wealth.
+                            In finance, an investment is a monetary asset purchased with the idea that the asset will
+                            provide income in the future or will later be sold at a higher price for a profit.
+                        </h4>
+
+                    </div>
+                    <div class="ml-3 mt-5">
+                        <h1>What Is an Microcredit?
+                        </h1>
+                        <h4>Microcredit is the extension of very small loans (microloans) to impoverished borrowers who
+                            typically lack collateral, steady employment, or a verifiable credit history. It is designed
+                            to support entrepreneurship and alleviate
+                            poverty. Many recipients are illiterate, and therefore unable to complete paperwork required
+                            to get conventional loans. As of 2009 an estimated 74 million people held microloans that
+                            totaled US$38 billion. Grameen Bank reports
+                            that repayment success rates are between 95 and 98 percent.
+                        </h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="public/js/jquery.js">
+    </script>
+    <script type="text/javascript" src="public/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript" src="public/js/angular.min.js">
+    </script>
+    <script type="text/javascript" src="public/js/angular-route.min.js">
+    </script>
+    <script type="text/javascript" src="public/js/route.js">
+    </script>
+
+
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+                window.location.href = "signin.html";
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
