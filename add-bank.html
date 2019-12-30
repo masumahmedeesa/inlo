@@ -150,8 +150,8 @@
                                     <h6> Address </h6>
                                 </label>
                                 <div class="col-sm-10">
-                                    <textarea id="address" type="text" name="address" class="form-control"
-                                        placeholder="Address"></textarea>
+                                    <textarea id="address" type="text" style="height: 100px;" name="address"
+                                        class="form-control" placeholder="Address"></textarea>
                                 </div>
                             </div>
                             <br>
@@ -161,8 +161,41 @@
                                     <h6> Description </h6>
                                 </label>
                                 <div class="col-sm-10">
-                                    <textarea id="description" type="text" name="description" class="form-control"
-                                        placeholder="Description"></textarea>
+                                    <textarea id="description" type="text" style="height:500px;" name="description"
+                                        class="form-control" placeholder="Description"></textarea>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Services </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea id="services" type="text" style="height:500px;" name="services"
+                                        class="form-control" placeholder="Services"></textarea>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Established </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="established" name="established" class="form-control"
+                                        placeholder="Established" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Website </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="website" name="website" class="form-control"
+                                        placeholder="Website" />
                                 </div>
                             </div>
                             <br>
@@ -241,8 +274,11 @@
             $("#category").removeClass("is-invalid");
             $("#type").removeClass("is-invalid");
             $("#origin").removeClass("is-invalid");
-            $("[name=address]").removeClass("is-invalid");
-            $("[name=description]").removeClass("is-invalid");
+            $("#address").removeClass("is-invalid");
+            $("#description").removeClass("is-invalid");
+            $("#services").removeClass("is-invalid");
+            $("#established").removeClass("is-invalid");
+            $("#website").removeClass("is-invalid");
             $("#bankPhoto").removeClass("is-invalid");
 
             var knownAs = $("#knownAs").val();
@@ -251,10 +287,11 @@
             var category = $("#category").val();
             var type = $("#type").val();
             var origin = $("#origin").val();
-            var address = $("#address").val(); 
-            // var address = $('[name=address]').val();
-            // var description = $('[name=description]').val();
+            var address = $("#address").val();
             var description = $("#description").val();
+            var services = $("#services").val();
+            var established = $("#established").val();
+            var website = $("#website").val();
             var picture = $("#bankPhoto").prop("files")[0];
 
             if (!description) {
@@ -324,6 +361,9 @@
                                 "origin": origin,
                                 "address": address,
                                 "description": description,
+                                "services": services,
+                                "established": established,
+                                "website": website,
                                 "image": downloadUrl,
                                 "name": fileCompleteName,
                                 "counter": 5000 - counter,
@@ -367,26 +407,6 @@
             $("#upload-progress").html("completed");
         }
     </script>
-
-    <!-- <script type="text/javascript" src="public/ckeditor/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#address'))
-            .then(ckeditor => {
-                console.log(ckeditor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#description'))
-            .then(ckeditor => {
-                console.log(ckeditor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script> -->
 
     <script>
         firebase.auth().onAuthStateChanged(function (user) {
