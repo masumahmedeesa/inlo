@@ -72,19 +72,20 @@
                             <a href="bank-info.html" class="ml-3 btn btn-sm btn-primary">S H O W B A N K</a>
                         </div>
                         <div style="background: black; color: whitesmoke;">
-                            <h3 class="mt-3 p-2">Add Bank</h3>
+                            <h3 class="mt-3 p-2">UPDATE Bank</h3>
                         </div>
                         <br>
                         <script>
                             var counter = 0;
                         </script>
+
                         <form id="main-form">
                             <div class="input-group">
                                 <label class="col-sm-2 col-form-label">
                                     <h6> Known As </h6>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="knownAs" name="knownAs" class="form-control"
+                                    <input type="text" name="knownAs" class="form-control"
                                         placeholder="Known As" />
                                 </div>
                             </div>
@@ -202,34 +203,16 @@
 
                             <div class="input-group">
                                 <label class="col-sm-2 col-form-label">
-                                    <h6> Photo </h6>
-                                </label>
-                                <div class="col-sm-10 mt-1">
-                                    <input type="file" id="bankPhoto" name="bankPhoto" />
-                                    <img id="selected-image" class="mt-3 img-thumbnail" src="#" />
-                                </div>
-                                <div class="col-sm-10 mt-1">
-
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <div class="progress bg-secondary">
-                                    <div class="progress-bar bg-info" id="upload-progress">0%</div>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <label class="col-sm-2 col-form-label">
                                     <h6> </h6>
                                 </label>
                                 <div class="col-sm-10 mt-1" style="text-align: end;">
-                                    <button id="save-bank" type="button" class="btn btn-sm btn-info">Add TO
+                                    <button class="btn btn-sm btn-info">UPDATE TO
                                         FIREBASE</button>
                                 </div>
                             </div>
                             <br>
                         </form>
-                        <div id="result"></div>
+
                     </div>
                 </div>
             </div>
@@ -248,161 +231,64 @@
     <script src="public/js/index.js"></script>
 
     <script>
-        var validImagetypes = ["image/gif", "image/jpeg", "image/png"];
 
-        $("#selected-image").hide();
+            var bank_id = window.location.href.split('?')[1].split('=')[1];
+            if(bank_id) {
+            var databaseRef = firebase.database().ref("bankinfo").child(bank_id);
 
-        function previewImages(image_blog) {
-            if (image_blog.files && image_blog.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $("#selected-image").attr('src', e.target.result);
-                    $("#selected-image").fadeIn();
-                }
-                reader.readAsDataURL(image_blog.files[0]);
-            }
-        }
-
-        $("#bankPhoto").change(function () {
-            previewImages(this);
-        });
-
-        $("#save-bank").click(function () {
-            $("#knownAs").removeClass("is-invalid");
-            $("#swiftCode").removeClass("is-invalid");
-            $("#stockCode").removeClass("is-invalid");
-            $("#category").removeClass("is-invalid");
-            $("#type").removeClass("is-invalid");
-            $("#origin").removeClass("is-invalid");
-            $("#address").removeClass("is-invalid");
-            $("#description").removeClass("is-invalid");
-            $("#services").removeClass("is-invalid");
-            $("#established").removeClass("is-invalid");
-            $("#website").removeClass("is-invalid");
-            $("#bankPhoto").removeClass("is-invalid");
-
-            var knownAs = $("#knownAs").val();
-            var swiftCode = $("#swiftCode").val();
-            var stockCode = $("#stockCode").val();
-            var category = $("#category").val();
-            var type = $("#type").val();
-            var origin = $("#origin").val();
-            var address = $("#address").val();
-            var description = $("#description").val();
-            var services = $("#services").val();
-            var established = $("#established").val();
-            var website = $("#website").val();
-            var picture = $("#bankPhoto").prop("files")[0];
-
-            if (!description) {
-                $("#description").addClass("is-invalid");
-                // $("[name=description]").addClass("is-invalid");
-                return;
-            }
-            if (picture == null) {
-                $("#bankPhoto").addClass("is-invalid");
-                return;
-            }
-            if ($.inArray(picture["type"], validImagetypes) < 0) {
-                $("#bankPhoto").addClass("is-invalid");
-                return;
-            }
-
-            var databaseRef = firebase.database().ref().child("bankinfo");
-
-            databaseRef.once("value").then(function (snapshot) {
-                var name = picture["name"];
-                var dateStr = new Date().getTime();
-                var fileCompleteName = name + "_" + dateStr;
-
-                var storageRef = firebase.storage().ref("bank_images");
-                var blogStorageRef = storageRef.child(fileCompleteName);
-
-                var UploadTask = blogStorageRef.put(picture);
-
-
-                // console.log(snapshot.getKey());
-
-                UploadTask.on("state_changed",
-
-                    function progress(snapshot) {
-                        var persentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-                        $("#upload-progress").html(Math.round(persentage) + "%");
-                        $("#upload-progress").attr("style", "width:" + persentage + "%");
-                    },
-                    function error(err) {
-                        console.log(err);
-                    },
-                    function complete() {
-                        var user = firebase.auth().currentUser;
-                        var userName;
-                        firebase.database().ref('admin/' + user.uid).once('value').then(function (
-                            snapshot) {
-                            var fName = (snapshot.val() && snapshot.val().firstName);
-                            var sName = (snapshot.val() && snapshot.val().secondName);
-
-                            userName = fName + " " + sName;
-                        });
-
-                        UploadTask.snapshot.ref.getDownloadURL().then(function (downloadUrl) {
-                            var time = new Date();
-                            var options = {
-                                weekday: "long",
-                                month: "long",
-                                day: "2-digit",
-                                year: "number",
-                            };
-
-                            var bankData = {
-                                "knownAs": knownAs,
-                                "stockCode": stockCode,
-                                "swiftCode": swiftCode,
-                                "category": category,
-                                "type": type,
-                                "origin": origin,
-                                "address": address,
-                                "description": description,
-                                "services": services,
-                                "established": established,
-                                "website": website,
-                                "image": downloadUrl,
-                                "name": fileCompleteName,
-                                "isFavourite":false,
-                                "counter": 5000 - counter,
-                                "time": time.toLocaleString('en-US', {
-                                    hour: 'numeric',
-                                    minute: 'numeric',
-                                    hour12: true
-                                }),
-                                //"date": time.toLocaleDateString('en-US', options),
-                            };
-
-                            var newPostRef = databaseRef.push();
-
-                            newPostRef.set(bankData, function (err) {
-                                if (err) {
-                                    $("#result").attr("class",
-                                        "alert alert-danger");
-                                    $("#result").html(err.message);
-
-                                } else {
-                                    $("#result").attr("class",
-                                        "alert alert-success");
-                                    $("#result").html(
-                                        "Info has been uploaded successfully.");
-
-                                    window.open("", "_self");
-
-                                }
-                                resetForm();
-                            });
-                        });
-                    }
-                );
+            databaseRef.once("value", function(snapshot){
+                 console.log(snapshot.val());
+                 var info = snapshot.val();
+//                  $('#knownAs').val(info.knownAs);
+                 $('#main-form [name="knownAs"]').val(info.knownAs);
+                 $('#main-form [name="swiftCode"]').val(info.swiftCode);
+                 $('#main-form [name="stockCode"]').val(info.stockCode);
+                 $('#main-form [name="category"]').val(info.category);
+                 $('#main-form [name="type"]').val(info.type);
+                 $('#main-form [name="origin"]').val(info.origin);
+                 $('#main-form [name="address"]').val(info.address);
+                 $('#main-form [name="description"]').val(info.description);
+                 $('#main-form [name="services"]').val(info.services);
+                 $('#main-form [name="established"]').val(info.established);
+                 $('#main-form [name="website"]').val(info.website);
             });
-        });
 
+            $('#main-form').submit(function(e){
+                        e.preventDefault();
+                        console.log($('#update_entry [name="title"]').val());
+                        
+                        databaseRef.transaction(function(entry){
+                            
+                            entry = entry || {};
+//                             entry.knownAs = $('#update_entry [name="title"]').val();
+                            entry.knownAs = $('#main-form [name="knownAs"]').val();
+                            entry.stockCode = $('#main-form [name="stockCode"]').val();
+                            entry.swiftCode = $('#main-form [name="swiftCode"]').val();
+                            entry.category = $('#main-form [name="category"]').val();
+                            entry.type = $('#main-form [name="type"]').val();
+                            entry.origin = $('#main-form [name="origin"]').val();
+                            entry.address = $('#main-form [name="address"]').val();
+                            entry.description = $('#main-form [name="description"]').val();
+                            entry.services = $('#main-form [name="services"]').val();
+                            entry.established = $('#main-form [name="established"]').val();
+                            entry.website = $('#main-form [name="website"]').val();
+
+                            entry.updatedAt = new Date().getTime();
+                            
+                            return entry;
+                            
+                        }).then(function(){
+                            window.location.href = 'bank-info.html';
+                        }).catch(function(error){
+                            alert(error);
+                        });
+
+                        return false;
+                    });
+
+            } 
+//         });
+    
         function resetForm() {
             $("#main-form")[0].reset();
             $("#selected-image").fadeOut();

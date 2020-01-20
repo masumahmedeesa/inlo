@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>I N L O</title>
+
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body style="font-family: Ubuntu;">
+
+    <nav class="shadow navbar navbar-expand-lg navbar-dark" style="background: black; font-size: 18px;">
+        <a href="MainPage.html" class="navbar-brand">
+            <kbd style="color: #58FF33;">I N L O | A D M I N</kbd>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <span style="padding-right: 20px;"></span>
+                <li class="nav-item">
+                    <a href="bank-info.html" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-users"></i>
+                        Banks
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="loan-info.html" class="nav-link font-weight-normal">
+                        <i class="d-lg-none mr-2 fa fa-cogs"></i>
+                        Loans
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ideas.html" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-slack"></i>
+                        Ideas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-files-o"></i>
+                        Comments
+                    </a>
+                </li>
+            </ul>
+
+            <form class="form-inline mt-0 ml-auto">
+                <div class="input-group">
+                    <input type="search" class="form-control form-control-sm bg-light"
+                        style="color: rgb(6, 6, 7); width: 400px;" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="input-group-text btn btn-outline-warning"><i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5 mb-5">
+        <div class="shadow d-flex card">
+            <div class="shadow d-flex mt-4 card-body">
+                <div class="container-fluid">
+                    <div class="ml-3">
+                        <div class="d-flex">
+                            <a href="add-idea.html" class="btn btn-sm btn-primary">A D D B A N K</a>
+                            <a href="idea-info.html" class="ml-3 btn btn-sm btn-primary">S H O W B A N K</a>
+                        </div>
+                        <h1 class="mt-3">I D E A I N F O</h1>
+                        <div class="mt-3">
+                            <script>
+                                var counter = 0;
+                            </script>
+                            <div id="ideaid">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="public/js/jquery.js"> </script>
+    <script type="text/javascript" src="public/js/bootstrap.min.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+    <script src="public/js/index.js"></script>
+
+
+    <script>
+        var ideasinfo = firebase.database().ref().child("ideas");
+        var commentsInfo = firebase.database().ref("comments");
+
+        ideasinfo.on("value", function (ideas) {
+            if (ideas.exists()) {
+                var ideasHtml = "";
+
+        
+
+
+                ideas.forEach(function (singleidea) {
+                    counter = counter + 1;
+
+
+                    ideasHtml +="<div class='card shadow p-3'>"
+                    ideasHtml += "<h4>"
+                    ideasHtml += singleidea.val().title;
+                    ideasHtml += "</h4><hr>"
+
+                    ideasHtml += "<div class='row'>";
+                    ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    ideasHtml += "Verified"
+                    ideasHtml += "</b></div><div class='col-9 p-1'>";
+                    ideasHtml += singleidea.val().isVerify;
+                    ideasHtml += "</div></div>"
+
+                    ideasHtml += "<div class='row'>";
+                    ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    ideasHtml += "Revenue"
+                    ideasHtml += "</b></div><div class='col-9 p-1'>";
+                    ideasHtml += singleidea.val().price;
+                    ideasHtml += " BDT </div></div>"
+
+                    ideasHtml += "<div class='row'>";
+                    ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    ideasHtml += "Description"
+                    ideasHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    ideasHtml += singleidea.val().description;
+                    ideasHtml += "</div></div>"
+
+                    ideasHtml += "<div class='row'>";
+                    ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    ideasHtml += "I M A G E";
+                    ideasHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    ideasHtml += "<img class='img-thumbnail' src=";
+                    ideasHtml += singleidea.val().imageUrl;
+                    ideasHtml +=" alt='Failed to Upload'/>";
+                    ideasHtml += "</div></div>";
+
+                    commentsInfo.on('value',function(c){
+                        c.forEach(function(signleC){
+                            if(singleidea.key == signleC.val().ideaId){
+                                console.log(signleC.val().ideaId);
+                                console.log('paisi');
+                                ideasHtml += "<div class='row'>";
+                                ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                                ideasHtml += "Comments"
+                                ideasHtml += "</b></div><div class='col-9 p-1'>";
+                                ideasHtml += signleC.val().commentBox;
+                                ideasHtml += "</div></div>"
+                            }
+                                
+                        });
+                    });
+
+                    ideasHtml += "<div class='row'>";
+                    ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    ideasHtml += " ";
+                    ideasHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    ideasHtml += "<button class='btn btn-sm btn-success' onclick=approveidea('"+singleidea.key+"')>APPROVE</button>";
+                    ideasHtml += "<button class='ml-3 btn btn-sm btn-danger' onclick=deleteidea('"+singleidea.key+"')> DELETE</button> </div></div>";
+                    ideasHtml +="</div>"
+
+                    
+                    ideasHtml +="</div>"
+
+                });
+                $("#ideaid").html(ideasHtml);
+            }
+        });
+
+
+        function deleteidea(key){
+            var dataDel = firebase.database().ref().child("ideas").child(key);
+            return dataDel.remove().then(function(){
+                console.log('Deleted Successfully');
+            }).catch(function(){
+                console.log('Error Occurred!');
+            });
+        }
+
+        function approveidea(key){
+            var dataA = firebase.database().ref("ideas").child(key);
+
+            dataA.transaction(function(entry){         
+                 console.log(entry);     
+                entry = entry || {};
+                entry.isVerify = "yes";
+                            
+                return entry;
+                            
+                }).then(function(){
+                    console.log('Success');
+                }).catch(function(error){
+                    alert(error);
+                });
+                return false;
+        }
+
+    </script>
+
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+                window.location.href = "signin.html";
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

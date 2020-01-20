@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>I N L O</title>
+
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body style="font-family: Ubuntu;">
+
+    <nav class="shadow navbar navbar-expand-lg navbar-dark" style="background: black; font-size: 18px;">
+        <a href="MainPage.html" class="navbar-brand">
+            <kbd style="color: #58FF33;">I N L O | A D M I N</kbd>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <span style="padding-right: 20px;"></span>
+                <li class="nav-item">
+                    <a href="bank-info.html" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-users"></i>
+                        Banks
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="loan-info.html" class="nav-link font-weight-normal">
+                        <i class="d-lg-none mr-2 fa fa-cogs"></i>
+                        Loans
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-slack"></i>
+                        Ideas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="d-lg-none mr-2 fa fa-files-o"></i>
+                        Comments
+                    </a>
+                </li>
+            </ul>
+
+            <form class="form-inline mt-0 ml-auto">
+                <div class="input-group">
+                    <input type="search" class="form-control form-control-sm bg-light"
+                        style="color: rgb(6, 6, 7); width: 400px;" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="input-group-text btn btn-outline-warning"><i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5 mb-5">
+        <div class="shadow d-flex card">
+            <div class="shadow d-flex mt-4 card-body">
+                <div class="container-fluid">
+                    <div class="ml-3">
+                        <div class="d-flex">
+                            <a href="add-loan.html" class="btn btn-sm btn-primary">A D D L O A N</a>
+                            <a href="loan-info.html" class="ml-3 btn btn-sm btn-primary">S H O W L O A N</a>
+                        </div>
+                        <div style="background: black; color: whitesmoke;">
+                            <h3 class="mt-3 p-2">UPDATE Loan</h3>
+                        </div>
+                        <br>
+                        <script>
+                            var counter = 0;
+                        </script>
+
+                        <form id="main-form">
+
+                                          <div class="input-group">
+                                                                                    <label class="col-sm-2 col-form-label">
+                                                                                        <h6> STOCK CODE </h6>
+                                                                                    </label>
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="text" id="stockCode" name="stockCode" class="form-control" placeholder="Stock Code" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Name </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="Loan Name" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Loan Amount </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="loanAmount" class="form-control"
+                                        placeholder="Loan Amount" />
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Tenure </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="tenure" class="form-control"
+                                        placeholder="Tenrue" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Interest Rate </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="interestRate" class="form-control"
+                                        placeholder="Interest Rate" />
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Conditions </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="conditions" class="form-control" placeholder="Conditions" />
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> Description </h6>
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" style="height:100px;" name="description"
+                                        class="form-control" placeholder="Description"></textarea>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                          <label class="col-sm-2 col-form-label">
+                                              <h6> Eligibility </h6>
+                                          </label>
+                                          <div class="col-sm-10">
+                                              <textarea type="text" style="height:100px;" name="eligibility"
+                                                  class="form-control" placeholder="Eligibility"></textarea>
+                                          </div>
+                                      </div>
+                                      <br>
+
+                            <div class="input-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h6> </h6>
+                                </label>
+                                <div class="col-sm-10 mt-1" style="text-align: end;">
+                                    <button class="btn btn-sm btn-info">UPDATE TO
+                                        FIREBASE</button>
+                                </div>
+                            </div>
+                            <br>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="public/js/jquery.js"> </script>
+    <script type="text/javascript" src="public/js/bootstrap.min.js"> </script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+    <script src="public/js/index.js"></script>
+
+    <script>
+
+            var loan_id = window.location.href.split('?')[1].split('=')[1];
+            if(loan_id) {
+            var databaseRef = firebase.database().ref("loans").child(loan_id);
+
+            databaseRef.once("value", function(snapshot){
+                 console.log(snapshot.val());
+                 var info = snapshot.val();
+
+                 $('#main-form [name="stockCode"]').val(info.stockCode);
+                 $('#main-form [name="name"]').val(info.name);
+                 $('#main-form [name="loanAmount"]').val(info.loanAmount);
+                 $('#main-form [name="tenure"]').val(info.tenure);
+                 $('#main-form [name="interestRate"]').val(info.interestRate);
+                 $('#main-form [name="conditions"]').val(info.conditions);
+                 $('#main-form [name="description"]').val(info.description);
+                 $('#main-form [name="eligibility"]').val(info.eligibility);
+
+            });
+
+            $('#main-form').submit(function(e){
+                        e.preventDefault();
+                        console.log($('#update_entry [name="title"]').val());
+                        
+                        databaseRef.transaction(function(entry){
+                            
+                            entry = entry || {};
+                            entry.stockCode = $('#main-form [name="stockCode"]').val();
+                            entry.name = $('#main-form [name="name"]').val();
+                            entry.loanAmount = $('#main-form [name="loanAmount"]').val();
+                            entry.tenure = $('#main-form [name="tenure"]').val();
+                            entry.interestRate = $('#main-form [name="interestRate"]').val();
+                            entry.conditions = $('#main-form [name="conditions"]').val();
+                            entry.description = $('#main-form [name="description"]').val();
+                            entry.eligibility = $('#main-form [name="eligibility"]').val();
+                            entry.updatedAt = new Date().getTime();
+                            
+                            return entry;
+                            
+                        }).then(function(){
+                            window.location.href = 'loan-info.html';
+                        }).catch(function(error){
+                            alert(error);
+                        });
+
+                        return false;
+                    });
+
+            } 
+//         });
+    
+        function resetForm() {
+            $("#main-form")[0].reset();
+            $("#selected-image").fadeOut();
+            $("#upload-progress").html("completed");
+        }
+    </script>
+
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+                window.location.href = "signin.html";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

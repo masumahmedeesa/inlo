@@ -24,13 +24,13 @@
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <span style="padding-right: 20px;"></span>
                 <li class="nav-item">
-                    <a href="add-bank.html" class="nav-link">
+                    <a href="bank-info.html" class="nav-link">
                         <i class="d-lg-none mr-2 fa fa-users"></i>
-                        Banks Info
+                        Banks
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link font-weight-normal">
+                    <a href="loan-info.html" class="nav-link font-weight-normal">
                         <i class="d-lg-none mr-2 fa fa-cogs"></i>
                         Loans
                     </a>
@@ -101,7 +101,6 @@
     <script>
         var banksinfo = firebase.database().ref().child("bankinfo").orderByChild("counter");
 
-        console.log(banksinfo);
 
         banksinfo.on("value", function (banks) {
             if (banks.exists()) {
@@ -110,6 +109,10 @@
                 banks.forEach(function (singleBank) {
                     counter = counter + 1;
                     
+                    console.log(singleBank.key);
+                    console.log(singleBank.val());
+                    var tt = 'http://127.0.0.1:5500/edit-bank.html?id=-LxKi3rjKV59jFRduko6';
+                    console.log(tt.split('?')[1].split('=')[1])
                     banksHtml +="<div class='card shadow p-3'>"
                     banksHtml += "<h4>"
                     banksHtml += singleBank.val().stockCode;
@@ -173,21 +176,45 @@
                     
                     banksHtml += "<div class='row'>";
                     banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    banksHtml += "I M A G E"
+                    banksHtml += "Services"
                     banksHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    banksHtml += "<img src='"
-                    banksHtml += singleBank.val().image;
-                    banksHtml +="' alt='Failed to Upload'/>"
+                    banksHtml += singleBank.val().services;
+                    banksHtml += "</div></div>"
+
+                    banksHtml += "<div class='row'>";
+                    banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    banksHtml += "Established"
+                    banksHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    banksHtml += singleBank.val().established;
+                    banksHtml += "</div></div>"
+
+                    banksHtml += "<div class='row'>";
+                    banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    banksHtml += "Website"
+                    banksHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    banksHtml += singleBank.val().website;
                     banksHtml += "</div></div>"
 
 
                     banksHtml += "<div class='row'>";
                     banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    banksHtml += "I M A G E"
+                    banksHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    banksHtml += "<img class='img-thumbnail' src="
+                    banksHtml += singleBank.val().image;
+                    banksHtml +=" alt='Failed to Upload'/>"
+                    banksHtml += "</div></div>"
+
+                    banksHtml += "<div class='row'>";
+                    banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
                     banksHtml += " "
                     banksHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    banksHtml += "<a class='btn btn-sm btn-success'>E D I T</a>"
-                    banksHtml += "</div></div>"
+                    banksHtml += "<a href='edit-bank.html?id="
+                    banksHtml += singleBank.key
+                    banksHtml += "' class='btn btn-sm btn-success'>E D I T</a> <button class='btn btn-sm btn-danger' onclick=deleteBank('"+singleBank.key+"')> DELETE</button> </div></div>"
                     banksHtml +="</div>"
+                    
+
 
                     banksHtml +="</div>"
 
@@ -195,6 +222,15 @@
                 $("#bankid").html(banksHtml);
             }
         });
+
+        function deleteBank(key){
+            var dataDel = firebase.database().ref().child("bankinfo").child(key);
+            return dataDel.remove().then(function(){
+                console.log('Deleted Successfully');
+            }).catch(function(){
+                console.log('Error Occurred!');
+            });
+        }
     </script>
 
     <script>
