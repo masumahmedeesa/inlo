@@ -61,7 +61,7 @@
                             <a href="add-loan.html" class="btn btn-sm btn-primary">A D D L O A N</a>
                             <a href="loan-info.html" class="ml-3 btn btn-sm btn-primary">S H O W L O A N</a>
                         </div> -->
-                        <h1 class="mt-3">L O A N I N F O</h1>
+                        <h1 class="mt-3">R E Q U E S T I N F O</h1>
                         <div class="mt-3">
                             <script>
                                 var counter = 0;
@@ -89,102 +89,123 @@
 
 
     <script>
-        var bank_id = window.location.href.split('?')[1].split('=')[1];
-        var loansinfo = firebase.database().ref().child("loans");
+        var loan_id = window.location.href.split('?')[1].split('=')[1];
+        var loansinfo = firebase.database().ref().child("requests");
+
+        // var newL = [];
 
         loansinfo.on("value", function (loans) {
             if (loans.exists()) {
                 var loansHtml = "";
-
+                // console.log(loans.val());
                 loans.forEach(function (singleloan) {
-                    console.log('hey');
-                    console.log(singleloan.val().bankId);
-                    console.log(bank_id);
-                    if(singleloan.val().bankId == bank_id){
-                    console.log(singleloan.key);
+                    // console.log('hey');
+                    // console.log(singleloan.val().loanId);
+                    // console.log(loan_id);
+                    if(singleloan.val().loanId == loan_id){
+                    // console.log(singleloan.key);
                     
-                    console.log(singleloan.val());
-                    console.log('fuck');
-
+                    // console.log(singleloan.val());
+                    console.log('TKD');
+                    // newL.bal = singleloan.val().userEmail;
                     loansHtml +="<div class='card shadow p-3'>"
-                    loansHtml += "<h4>"
-                    loansHtml += singleloan.val().name;
+                    loansHtml += "<h4> Requests From : "
+                    loansHtml += singleloan.val().userName;
                     loansHtml += "</h4><hr>"
 
                     loansHtml += "<div class='row'>";
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "BANK"
+                    loansHtml += "Email"
                     loansHtml += "</b></div><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().stockCode;
+                    loansHtml += singleloan.val().userEmail;
                     loansHtml += "</div></div>"
                     
                     loansHtml += "<div class='row'>";
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Loan Amount"
+                    loansHtml += "Salary"
                     loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().loanAmount;
+                    loansHtml += singleloan.val().salary;
                     loansHtml += "</div></div>"
 
                     loansHtml += "<div class='row'>";
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Tenure"
+                    loansHtml += "Property"
                     loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().tenure;
+                    loansHtml += singleloan.val().property;
                     loansHtml += "</div></div>"
 
                     loansHtml += "<div class='row'>";
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Interest Rate"
+                    loansHtml += "How you repay?"
                     loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().interestRate;
+                    loansHtml += singleloan.val().how;
                     loansHtml += "</div></div>"
 
                     loansHtml += "<div class='row'>";
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Conditions"
+                    loansHtml += "Why this?"
                     loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().conditions;
-                    loansHtml += "</div></div>"
-
-
-                    loansHtml += "<div class='row'>";
-                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Description"
-                    loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().description;
-                    loansHtml += "</div></div>"
-                    
-
-                    loansHtml += "<div class='row'>";
-                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Eligibility"
-                    loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().eligibility;
+                    loansHtml += singleloan.val().cause;
                     loansHtml += "</div></div>"
 
                     loansHtml += "<div class='row'>";
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
                     loansHtml += " "
                     loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += "<a href='request-info.html?id="
-                    loansHtml += singleloan.key
-                    loansHtml += "' class='ml-1 btn btn-sm btn-success'>SHOW REQUESTS</a>";
-                    loansHtml += "<a href='edit-loan.html?id="
-                    loansHtml += singleloan.key
-                    loansHtml += "' class='ml-5 btn btn-sm btn-success'>E D I T</a> <button class='btn btn-sm btn-danger' onclick=deleteloan('"+singleloan.key+"')> DELETE</button> </div></div>"
+                    loansHtml += "<button class='btn btn-sm btn-success' onclick=approveRequest('"+singleloan.key+"','"+singleloan.val().userId+"','"+singleloan.val().bankId+"','"+singleloan.val().loanName+"')> APPROVE</button> <button class='btn btn-sm btn-danger' onclick=deleteloan('"+singleloan.key+"')> DELETE</button> </div></div>";
                     loansHtml +="</div>"
-                    
 
                     loansHtml +="</div>"
                     }
                     
                 });
                 $("#loanid").html(loansHtml);
+            } else 
+            {
+                  console.log('nai');                                  
+                  var nai= "";
+                  nai += "<h1> No requests ! </h1>";                        
+                  $("#loanid").html(nai);  
             }
+                                 
         });
 
+        function approveRequest(key, userId, bankId, hey){
+            console.log('fuck in approve');
+            // console.log(newL);
+            var approved = firebase.database().ref().child("approved");
+            var entry = {}
+            console.log(hey);
+            entry.loanId = key;
+            entry.userId = userId;
+            entry.bankId = bankId;
+            entry.loanName = hey;
+            loansinfo.on("value", function (loans) {
+                loans.forEach(function (singleloan) {
+                    console.log(singleloan.val().loanName);
+                });
+            });
+//             entry.userName = "userName";
+//             entry.userEmail = userEmail;
+//             entry.salary = salary;
+//             entry.property = property;
+//             entry.how = how;
+//             entry.cause = cause;
+
+            approved.push(entry).then(function(data){
+//                         window.location.href = 'banks-info.html'
+                        console.log('success');
+                    }).catch(function(error){
+                        alert(error);
+                        
+                        console.error(error);
+                    })
+                    
+             return false;
+        }
+
         function deleteloan(key){
-            var dataDel = firebase.database().ref().child("loans").child(key);
+            var dataDel = firebase.database().ref().child("requests").child(key);
             return dataDel.remove().then(function(){
                 console.log('Deleted Successfully');
             }).catch(function(){

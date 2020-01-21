@@ -29,24 +29,14 @@
                         Banks
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="loan-info.html" class="nav-link font-weight-normal">
-                        <i class="d-lg-none mr-2 fa fa-cogs"></i>
-                        Loans
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="d-lg-none mr-2 fa fa-slack"></i>
                         Ideas
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="d-lg-none mr-2 fa fa-files-o"></i>
-                        Comments
-                    </a>
-                </li>
+
             </ul>
 
             <form class="form-inline mt-0 ml-auto">
@@ -67,10 +57,10 @@
             <div class="shadow d-flex mt-4 card-body">
                 <div class="container-fluid">
                     <div class="ml-3">
-                        <div class="d-flex">
+                        <!-- <div class="d-flex">
                             <a href="add-loan.html" class="btn btn-sm btn-primary">A D D L O A N</a>
                             <a href="loan-info.html" class="ml-3 btn btn-sm btn-primary">S H O W L O A N</a>
-                        </div>
+                        </div> -->
                         <div style="background: black; color: whitesmoke;">
                             <h3 class="mt-3 p-2">UPDATE Loan</h3>
                         </div>
@@ -240,7 +230,7 @@
                             return entry;
                             
                         }).then(function(){
-                            window.location.href = 'loan-info.html';
+                            window.location.href = 'bank-info.html';
                         }).catch(function(error){
                             alert(error);
                         });

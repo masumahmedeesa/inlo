@@ -57,15 +57,9 @@
             <div class="shadow d-flex mt-4 card-body">
                 <div class="container-fluid">
                     <div class="ml-3">
-                        <!-- <div class="d-flex">
-                            <a href="add-loan.html" class="btn btn-sm btn-primary">A D D L O A N</a>
-                            <a href="loan-info.html" class="ml-3 btn btn-sm btn-primary">S H O W L O A N</a>
-                        </div> -->
                         <h1 class="mt-3">L O A N I N F O</h1>
                         <div class="mt-3">
-                            <script>
-                                var counter = 0;
-                            </script>
+
                             <div id="loanid">
 
                             </div>
@@ -89,89 +83,50 @@
 
 
     <script>
-        var bank_id = window.location.href.split('?')[1].split('=')[1];
-        var loansinfo = firebase.database().ref().child("loans");
+        var idea_id = window.location.href.split('?')[1].split('=')[1];
+//         var ideasinfo = firebase.database().ref().child("loans");
+        var reportsinfo = firebase.database().ref().child("reports");
 
-        loansinfo.on("value", function (loans) {
+        reportsinfo.on("value", function (loans) {
             if (loans.exists()) {
                 var loansHtml = "";
 
                 loans.forEach(function (singleloan) {
                     console.log('hey');
-                    console.log(singleloan.val().bankId);
-                    console.log(bank_id);
-                    if(singleloan.val().bankId == bank_id){
+                    console.log(singleloan.val().ideaId);
+                    console.log(idea_id);
+                    if(singleloan.val().ideaId == idea_id){
                     console.log(singleloan.key);
                     
                     console.log(singleloan.val());
-                    console.log('fuck');
+//                     console.log('fuck');
 
                     loansHtml +="<div class='card shadow p-3'>"
-                    loansHtml += "<h4>"
-                    loansHtml += singleloan.val().name;
+                    loansHtml += "<h4> Idea Title : "
+                    loansHtml += singleloan.val().title;
                     loansHtml += "</h4><hr>"
 
                     loansHtml += "<div class='row'>";
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "BANK"
+                    loansHtml += "Reporter"
                     loansHtml += "</b></div><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().stockCode;
+                    loansHtml += singleloan.val().userName;
+                    loansHtml += "</div></div>"
+
+                    loansHtml += "<div class='row'>";
+                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    loansHtml += "ReportBox"
+                    loansHtml += "</b></div><div class='col-9 p-1'>";
+                    loansHtml += singleloan.val().reportBox;
                     loansHtml += "</div></div>"
                     
-                    loansHtml += "<div class='row'>";
-                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Loan Amount"
-                    loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().loanAmount;
-                    loansHtml += "</div></div>"
-
-                    loansHtml += "<div class='row'>";
-                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Tenure"
-                    loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().tenure;
-                    loansHtml += "</div></div>"
-
-                    loansHtml += "<div class='row'>";
-                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Interest Rate"
-                    loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().interestRate;
-                    loansHtml += "</div></div>"
-
-                    loansHtml += "<div class='row'>";
-                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Conditions"
-                    loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().conditions;
-                    loansHtml += "</div></div>"
-
-
-                    loansHtml += "<div class='row'>";
-                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Description"
-                    loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().description;
-                    loansHtml += "</div></div>"
                     
-
-                    loansHtml += "<div class='row'>";
-                    loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    loansHtml += "Eligibility"
-                    loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += singleloan.val().eligibility;
-                    loansHtml += "</div></div>"
 
                     loansHtml += "<div class='row'>";
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
                     loansHtml += " "
                     loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += "<a href='request-info.html?id="
-                    loansHtml += singleloan.key
-                    loansHtml += "' class='ml-1 btn btn-sm btn-success'>SHOW REQUESTS</a>";
-                    loansHtml += "<a href='edit-loan.html?id="
-                    loansHtml += singleloan.key
-                    loansHtml += "' class='ml-5 btn btn-sm btn-success'>E D I T</a> <button class='btn btn-sm btn-danger' onclick=deleteloan('"+singleloan.key+"')> DELETE</button> </div></div>"
+                    loansHtml += "</div></div>"
                     loansHtml +="</div>"
                     
 

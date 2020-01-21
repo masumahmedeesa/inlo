@@ -29,24 +29,14 @@
                         Banks
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="loan-info.html" class="nav-link font-weight-normal">
-                        <i class="d-lg-none mr-2 fa fa-cogs"></i>
-                        Loans
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="d-lg-none mr-2 fa fa-slack"></i>
                         Ideas
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="d-lg-none mr-2 fa fa-files-o"></i>
-                        Comments
-                    </a>
-                </li>
+
             </ul>
 
             <form class="form-inline mt-0 ml-auto">
@@ -99,7 +89,8 @@
 
 
     <script>
-        var banksinfo = firebase.database().ref().child("bankinfo").orderByChild("counter");
+        var banksinfo = firebase.database().ref().child("bankinfo");
+        var loansinfo = firebase.database().ref().child("loans");
 
 
         banksinfo.on("value", function (banks) {
@@ -107,12 +98,12 @@
                 var banksHtml = "";
 
                 banks.forEach(function (singleBank) {
-                    counter = counter + 1;
                     
-                    console.log(singleBank.key);
-                    console.log(singleBank.val());
-                    var tt = 'http://127.0.0.1:5500/edit-bank.html?id=-LxKi3rjKV59jFRduko6';
-                    console.log(tt.split('?')[1].split('=')[1])
+                    // console.log(singleBank.key);
+                    // console.log(singleBank.val());
+                    // var tt = 'http://127.0.0.1:5500/edit-bank.html?id=-LxKi3rjKV59jFRduko6';
+                    // console.log(tt.split('?')[1].split('=')[1])
+
                     banksHtml +="<div class='card shadow p-3'>"
                     banksHtml += "<h4>"
                     banksHtml += singleBank.val().stockCode;
@@ -205,13 +196,51 @@
                     banksHtml +=" alt='Failed to Upload'/>"
                     banksHtml += "</div></div>"
 
-                    banksHtml += "<div class='row'>";
+                    // banksHtml += "<div class='row'>";
+                    // banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    // banksHtml += "L O A N S"
+                    // banksHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    
+                    
+                    // loansinfo.on("value", function (loans) {
+                    //     if(loans.exists()){
+                    //         loans.forEach(function(l){
+                    //             console.log('paisi');
+                    //             console.log(l.val());
+                    //             banksHtml += "<div class='row'>";
+                    //             banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    //             banksHtml += "L O A N S"
+                    //             banksHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    //             banksHtml += l.val().description;
+                    //             banksHtml += "</div></div>";
+                    //         });
+                    //     }
+                    // });
+                    //     // loan start
+                    // banksHtml += "<div class='row'>";
+                    // banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    // banksHtml += "L O A N S"
+                    // banksHtml += "</b></div><hr><div class='col-9 p-1'>";
+                    // banksHtml += "L O A N S"
+                    // banksHtml += "</div></div>";
+                    //     //loan end
+
+                    // banksHtml += "</div></div>"
+
+
+                    banksHtml += "<div class='mt-5 row'>";
                     banksHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
                     banksHtml += " "
                     banksHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    banksHtml += "<a href='edit-bank.html?id="
+                    banksHtml += "<a href='add-loan.html?id="
                     banksHtml += singleBank.key
-                    banksHtml += "' class='btn btn-sm btn-success'>E D I T</a> <button class='btn btn-sm btn-danger' onclick=deleteBank('"+singleBank.key+"')> DELETE</button> </div></div>"
+                    banksHtml += "' class='btn btn-sm btn-success'>ADD LOAN</a>";
+                    banksHtml += "<a href='loan-info.html?id="
+                    banksHtml += singleBank.key
+                    banksHtml += "' class='ml-1 btn btn-sm btn-success'>SHOW LOAN</a>";
+                    banksHtml += "<a href='edit-bank.html?id=";
+                    banksHtml += singleBank.key
+                    banksHtml += "' class='ml-5 btn btn-sm btn-success'>E D I T Bank Info</a> <button class='btn btn-sm btn-danger' onclick=deleteBank('"+singleBank.key+"')> DELETE Bank Info</button> </div></div>"
                     banksHtml +="</div>"
                     
 

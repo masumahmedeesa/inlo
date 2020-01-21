@@ -29,22 +29,11 @@
                         Banks
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="loan-info.html" class="nav-link font-weight-normal">
-                        <i class="d-lg-none mr-2 fa fa-cogs"></i>
-                        Loans
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="ideas.html" class="nav-link">
                         <i class="d-lg-none mr-2 fa fa-slack"></i>
                         Ideas
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="d-lg-none mr-2 fa fa-files-o"></i>
-                        Comments
                     </a>
                 </li>
             </ul>
@@ -106,11 +95,7 @@
             if (ideas.exists()) {
                 var ideasHtml = "";
 
-        
-
-
                 ideas.forEach(function (singleidea) {
-                    counter = counter + 1;
 
 
                     ideasHtml +="<div class='card shadow p-3'>"
@@ -118,11 +103,18 @@
                     ideasHtml += singleidea.val().title;
                     ideasHtml += "</h4><hr>"
 
+                    // ideasHtml += "<div class='row'>";
+                    // ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
+                    // ideasHtml += "Verified"
+                    // ideasHtml += "</b></div><div class='col-9 p-1'>";
+                    // ideasHtml += singleidea.val().isVerify;
+                    // ideasHtml += "</div></div>"
+
                     ideasHtml += "<div class='row'>";
                     ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
-                    ideasHtml += "Verified"
+                    ideasHtml += "Promoter"
                     ideasHtml += "</b></div><div class='col-9 p-1'>";
-                    ideasHtml += singleidea.val().isVerify;
+                    ideasHtml += singleidea.val().userEmail;
                     ideasHtml += "</div></div>"
 
                     ideasHtml += "<div class='row'>";
@@ -160,7 +152,6 @@
                                 ideasHtml += signleC.val().commentBox;
                                 ideasHtml += "</div></div>"
                             }
-                                
                         });
                     });
 
@@ -168,7 +159,10 @@
                     ideasHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
                     ideasHtml += " ";
                     ideasHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    ideasHtml += "<button class='btn btn-sm btn-success' onclick=approveidea('"+singleidea.key+"')>APPROVE</button>";
+                    ideasHtml += "<a href='report-info.html?id="
+                    ideasHtml += singleidea.key
+                    ideasHtml += "' class='ml-1 btn btn-sm btn-success'>SHOW Report</a>";
+                    // ideasHtml += "<button class='btn btn-sm btn-success' onclick=approveidea('"+singleidea.key+"')>APPROVE</button>";
                     ideasHtml += "<button class='ml-3 btn btn-sm btn-danger' onclick=deleteidea('"+singleidea.key+"')> DELETE</button> </div></div>";
                     ideasHtml +="</div>"
 
