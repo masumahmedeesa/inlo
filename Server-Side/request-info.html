@@ -152,7 +152,9 @@
                     loansHtml += "<div class='col-3 p-1' style='text-align:center;'> <b>";
                     loansHtml += " "
                     loansHtml += "</b></div><hr><div class='col-9 p-1'>";
-                    loansHtml += "<button class='btn btn-sm btn-success' onclick=approveRequest('"+singleloan.key+"','"+singleloan.val().userId+"','"+singleloan.val().bankId+"','"+singleloan.val().loanName+"')> APPROVE</button> <button class='btn btn-sm btn-danger' onclick=deleteloan('"+singleloan.key+"')> DELETE</button> </div></div>";
+                    console.log(typeof(singleloan.val().userId));
+                    var shit = singleloan.val().userName;
+                    loansHtml += "<a class='btn btn-sm btn-success' onclick=approveRequest('"+singleloan.key+"','"+singleloan.val().userId+"','"+singleloan.val().bankId+"')> APPROVE</a> <button class='btn btn-sm btn-danger' onclick=deleteloan('"+singleloan.key+"')> DELETE</button> </div></div>";
                     loansHtml +="</div>"
 
                     loansHtml +="</div>"
@@ -170,19 +172,31 @@
                                  
         });
 
-        function approveRequest(key, userId, bankId, hey){
+        function approveRequest(key, userId, bankId){
             console.log('fuck in approve');
             // console.log(newL);
             var approved = firebase.database().ref().child("approved");
             var entry = {}
-            console.log(hey);
-            entry.loanId = key;
+            // console.log(hey);
+            // entry.requestId = key;
             entry.userId = userId;
             entry.bankId = bankId;
-            entry.loanName = hey;
+            // entry.loanName = hey;
             loansinfo.on("value", function (loans) {
                 loans.forEach(function (singleloan) {
-                    console.log(singleloan.val().loanName);
+                    if(singleloan.key == key){
+                        console.log(singleloan.val().loanName);
+                        entry.loanId = singleloan.val().loanId;
+                        entry.loanName = singleloan.val().loanName;
+                        entry.stockCode = singleloan.val().stockCode;
+                        entry.userName = singleloan.val().userName;
+                        entry.userEmail = singleloan.val().userEmail;
+                        entry.salary = singleloan.val().salary;
+                        entry.property = singleloan.val().property;
+                    }
+                    else{
+                        console.log('pai nai');
+                    }
                 });
             });
 //             entry.userName = "userName";
@@ -197,7 +211,6 @@
                         console.log('success');
                     }).catch(function(error){
                         alert(error);
-                        
                         console.error(error);
                     })
                     
