@@ -1,6 +1,6 @@
 # Inlo (Investment & Loan | Native App)
-by Masum Ahmed_2016331028
-To Promote your Entrepreneur Business & to get Popular Bank Loan using Mobile, it’s really a great Native Apps for you.
+by Masum Ahmed_2016331028
+# To Promote your Entrepreneur Business & to get Popular Bank Loan using Mobile, it’s really a great Native Apps for you.
 
 
 # Features
