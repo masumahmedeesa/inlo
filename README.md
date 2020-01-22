@@ -1,7 +1,9 @@
 # Inlo (Investment & Loan | Native App)
-by Masum Ahmed_2016331028
+by Masum Ahmed
 # To Promote your Entrepreneur Business & to get Popular Bank Loan using Mobile, it’s really a great Native Apps for you.
 
+USERNAME : eesha@eesha.com
+PASSWORD : 01786122963
 
 # Features
 - I used Flutter, a Native Language to Develop Client-Side Application and NodeJS, a Javascript framework to develop Server-Side Web Application to manipulate Bank, Loan data as AdminPanel.
